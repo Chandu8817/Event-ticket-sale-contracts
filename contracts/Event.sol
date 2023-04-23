@@ -144,8 +144,10 @@ contract Event is ERC721Enumerable {
             _ticketNumber <= tickets[_type].end
         ) {
             return true;
+        }else{
+            revert("invaild type");
         }
-        return false;
+       
     }
 
     function calculateTicketsPrice(

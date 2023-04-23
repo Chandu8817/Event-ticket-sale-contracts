@@ -2,9 +2,10 @@
 pragma solidity ^0.8.18;
 
 import "./Event.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract EventCreator {
-    uint eventcreatationFee = 0.5 ether;
+contract EventCreator is Ownable {
+    uint public eventcreatationFee = 0.5 ether;
     address[] eventList;
     
 
@@ -43,5 +44,11 @@ contract EventCreator {
             endDate
         );
         return address(newEvent);
+    }
+
+    function withdraw(address payable to) public onlyOwner {
+        (bool sent, bytes memory data) = to.call{value: address(this).balance}("");
+        require(sent, "Failed to send Ether");
+
     }
 }

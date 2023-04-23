@@ -75,7 +75,7 @@ describe("Event management", () => {
         it("should buy type1 tickets", async () => {
 
             
-            const { event, type1, type2,otherAccount } = await loadFixture(deployOneYearLockFixture);
+            const { event, type1, type2,type3,otherAccount } = await loadFixture(deployOneYearLockFixture);
             await event.connect(otherAccount).BuyTicket([{_type: type2,ticketNumber:6},{_type: type2,ticketNumber:7}],{value: ethers.utils.parseEther('1')})
             // console.log(await event.calculateTicketsPrice([{_type: type1,ticketNumber:2},{_type: type1,ticketNumber:1},
             //     {_type: type1,ticketNumber:1},
